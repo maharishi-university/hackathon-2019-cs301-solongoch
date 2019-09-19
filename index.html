@@ -16,8 +16,72 @@
 
     <title>Hackathon - SpaceX Launch Event</title>
     <script>
+        function display() {
+            let fullName = document.getElementById('fullNameInput').value;
+            let email = document.getElementById('emailInput').value;
+            let phoneNumber = document.getElementById('phoneNumberInput').value;
+            let companyName = document.getElementById('companyNameInput').value;
+            let state = document.getElementById('stateInput').value;
 
-            // Add your JavaScript code here
+            // Check the full name
+            let firstName;
+            let lastName;
+            if (!(fullName.includes(' '))) {
+                alert("Enter your full name")
+            } else {
+                let fullNameArr = fullName.split(' ')
+                firstName = fullNameArr[0];
+                for (let i = 1; i < fullNameArr.length; i++) {
+                    if (fullNameArr[i] !== '') {
+                        lastName = fullNameArr[i];
+                        break;
+                    }
+                }
+                firstName1 = firstName[0].toUpperCase() + firstName.slice(1);
+                lastName1 = lastName[0].toUpperCase() + lastName.slice(1);
+            }
+
+            // Check the email
+            if (!(email.includes('@'))) {
+                alert("Enter your email")
+            } else {
+                let index = email.indexOf('@');
+                let endOfEmail = email.substring(index+1, email.length);
+                if (!(endOfEmail.includes('.'))) {
+                    alert("Enter your email");
+                }
+            }
+
+            // Check the phone number
+            if ((phoneNumber[3] !== '-') || (phoneNumber[7] !== '-')) {
+                alert('Enter your phone number');
+            }
+            let first3 = phoneNumber.substr(0, 3);
+            let mid3 = phoneNumber.substr(4, 3);
+            let last4 = phoneNumber.substr(8, 4);
+            if (isNaN(first3) || isNaN(mid3) || isNaN(last4)) {
+                alert('Enter your phone number');
+            }
+
+            // Check the company name
+            if (companyName.length === 0) {
+                alert("Enter the company name");
+            }
+
+            // Check the state name
+            if (state.length !== 2) {
+                alert("Enter proper state name");
+            } else {
+                state = state.toUpperCase();
+            }
+                
+            // Displaying inputs
+            document.getElementById('fullName').innerHTML = `${firstName1} ${lastName1}`;
+            document.getElementById('companyName').innerHTML = `${companyName}, ${state}`;
+            document.getElementById('phoneNumber').innerHTML = `${phoneNumber}`;
+            document.getElementById('email').innerHTML = `${email}`;
+        }
+
 
     </script>
 </head>
@@ -37,26 +101,26 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Full name</label>
-                    <input type="{{FILL_OUT}}" class="form-control" id="{{FILL_OUT}}" />
+                    <input type="text" class="form-control" id="fullNameInput" />
                 </div>
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="{{FILL_OUT}}" class="form-control" id="{{FILL_OUT}}" />
+                    <input type="text" class="form-control" id="emailInput" />
                 </div>
                 <div class="form-group">
                     <label>Mobile Number</label>
-                    <input type="{{FILL_OUT}}" class="form-control" id="{{FILL_OUT}}" placeholder="nnn-nnn-nnnn" />
+                    <input type="text" class="form-control" id="phoneNumberInput" placeholder="nnn-nnn-nnnn" />
                 </div>
                 <div class="form-group">
                     <label>Company</label>
-                    <input type="{{FILL_OUT}}" class="form-control" id="{{FILL_OUT}}" />
+                    <input type="text" class="form-control" id="companyNameInput" />
                 </div>
                 <div class="form-group">
                     <label>State</label>
-                    <input type="{{FILL_OUT}}" class="form-control" id="{{FILL_OUT}}" />
+                    <input type="text" class="form-control" id="stateInput" />
                 </div>
                 <div class="form-group">
-                    <input type="{{FILL_OUT}}" class="btn btn-primary" value="Launch" />
+                    <input type="button" onclick="display()" class="btn btn-primary" value="Launch" />
                 </div>
             </div>
             <div class="col-md-6">
@@ -64,10 +128,10 @@
                     <div class="card">
                         <img src="spaceship.jpg" class="spaceship" alt="Spaceship">
                         <div class="card-body">
-                            <h5 class="card-title" id="{{FILL_OUT}}">{{FILL_OUT_FULL_NAME}}</h5>
-                            <p class="card-text" id="{{FILL_OUT}}">{{FILL_OUT_COMPANY_NAME}}, {{FILL_OUT_STATE}}</p>
-                            <p class="card-text" id="{{FILL_OUT}}">{{FILL_OUT_PHONE_NUMBER}}</p>
-                            <p class="card-text" id="{{FILL_OUT}}">{{FILL_OUT_EMAIL_ADDRESS}}</p>
+                            <h5 class="card-title" id="fullName">{{FILL_OUT_FULL_NAME}}</h5>
+                            <p class="card-text" id="companyName">{{FILL_OUT_COMPANY_NAME}}, {{FILL_OUT_STATE}}</p>
+                            <p class="card-text" id="phoneNumber">{{FILL_OUT_PHONE_NUMBER}}</p>
+                            <p class="card-text" id="email">{{FILL_OUT_EMAIL_ADDRESS}}</p>
                         </div>
                         <div class="card-body">
                             <img id="barcode" alt="barcode">
