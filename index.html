@@ -24,12 +24,12 @@
             let state = document.getElementById('stateInput').value;
 
             // Check the full name
-            let firstName;
-            let lastName;
+            let firstName, firstName1;
+            let lastName, lastName1;
             if (!(fullName.includes(' '))) {
                 alert("Enter your full name")
             } else {
-                let fullNameArr = fullName.split(' ')
+                let fullNameArr = fullName.split(' ');
                 firstName = fullNameArr[0];
                 for (let i = 1; i < fullNameArr.length; i++) {
                     if (fullNameArr[i] !== '') {
